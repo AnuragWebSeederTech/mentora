@@ -1,245 +1,167 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Play, Sparkles } from 'lucide-react';
 
 const HeroSection = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const testimonials = [
+    {
+      image: "/images/img2.jpg",
+      quote: "Mentora helped me find balance in my practice and personal life, truly transformative!",
+      name: "Dr. Sarah Chen",
+      role: "Clinical Psychologist"
+    },
+    {
+      image: "/images/img1.jpg",
+      quote: "The mindfulness resources transformed my daily routine completely, fostering a sense of calm.",
+      name: "Maya Patel",
+      role: "Wellness Coach"
+    },
+    {
+      image: "/images/image.png",
+      quote: "Our family grew stronger through emotional intelligence tools; it was a game-changer for us.",
+      name: "Jennifer & Mark",
+      role: "Parents of Two"
+    }
+  ];
+
   return (
-    // Main section container with subtle background gradient and overflow hidden for animations
-    <section className="relative overflow-hidden min-h-[95vh] flex items-center py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-50 to-lime-50 font-exo-2">
-      {/* Animated Abstract Swirl/Flow SVG in Background - More prominent and dynamic */}
-      <svg className="absolute inset-0 w-full h-full z-10 opacity-20" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <radialGradient id="grad1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#a7f3d0" stopOpacity="0.8"/> {/* Emerald-200 */}
-            <stop offset="100%" stopColor="#d9f99d" stopOpacity="0"/> {/* Lime-200 */}
-          </radialGradient>
-          <radialGradient id="grad2" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#bef264" stopOpacity="0.6"/> {/* Lime-300 */}
-            <stop offset="100%" stopColor="#6ee7b7" stopOpacity="0"/> {/* Emerald-300 */}
-          </radialGradient>
-        </defs>
-        {/* Larger, more varied circles with enhanced animation */}
-        <circle cx="20" cy="20" r="15" fill="url(#grad1)" className="animate-swirl-1"/>
-        <circle cx="80" cy="50" r="20" fill="url(#grad2)" className="animate-swirl-2"/>
-        <circle cx="50" cy="80" r="18" fill="url(#grad1)" className="animate-swirl-3"/>
-        <circle cx="10" cy="60" r="12" fill="url(#grad2)" className="animate-swirl-4"/>
-        <circle cx="90" cy="10" r="10" fill="url(#grad1)" className="animate-swirl-5"/>
-      </svg>
+    <div className="relative min-h-screen bg-gradient-to-tr from-purple-50 via-purple-50 to-pink-50 overflow-hidden font-['Exo_2']"> {/* Enhanced background gradient for stronger purple shades */}
+      {/* Artistic Background Elements */}
+      <div className="absolute inset-0">
+        {/* Organic Shapes */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-200/50 to-pink-200/50 rounded-full blur-3xl" 
+             style={{ transform: `translateY(${scrollY * 0.1}px)` }} />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-indigo-200/50 to-violet-200/50 rounded-full blur-3xl"
+             style={{ transform: `translateY(${scrollY * -0.1}px)` }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-rose-200/40 to-purple-200/40 rounded-full blur-3xl" /> {/* Stronger rose/purple gradient */}
+
+        {/* Geometric Accents */}
+        <div className="absolute top-20 right-20 w-2 h-2 bg-purple-500 rounded-full opacity-70 animate-pulse" /> {/* Stronger purple accent */}
+        <div className="absolute top-40 left-32 w-1 h-1 bg-pink-500 rounded-full opacity-70 animate-pulse" style={{ animationDelay: '1s' }} /> {/* Stronger pink accent */}
+        <div className="absolute bottom-32 left-20 w-3 h-3 bg-indigo-500 rounded-full opacity-70 animate-pulse" style={{ animationDelay: '2s' }} /> {/* Stronger indigo accent */}
+      </div>
 
       {/* Main Content Grid */}
-      <div className="relative z-20 max-w-8xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
-        {/* Left Section: Text Content - Perfectly Aligned, Impactful */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left animate-fade-in-left md:pl-12 lg:pl-24"> {/* Adjusted for better left padding */}
-          <h1 className="font-tilt-neon text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 drop-shadow-lg tracking-tight animate-text-gradient">
-            Shape Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-400">Vision.</span>
-            <br />
-            Empower Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-600 to-yellow-400">Mind.</span>
-          </h1>
-          <p className="font-exo-2 text-lg sm:text-xl text-gray-700 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed">
-            Unleash your full potential with <span className="font-semibold text-emerald-700">curated insights</span>, groundbreaking tools, and a thriving community dedicated to profound mental clarity, emotional mastery, and accelerated personal growth.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start w-full animate-fade-in-up"> {/* Added fade-in-up animation */}
-            <button className="font-tilt-neon px-8 py-3 bg-emerald-600 text-white font-bold text-lg rounded-full shadow-xl relative overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:bg-emerald-700">
-              <span className="absolute inset-0 bg-gradient-to-r from-emerald-700 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></span>
-              <span className="relative z-10 block transform group-hover:scale-100 group-hover:translate-x-0 transition-transform duration-300">Start Your Evolution</span>
-              <span className="absolute inset-0 border-2 border-transparent group-hover:border-white transition-all duration-300 rounded-full"></span>
-            </button>
-            <button className="font-exo-2 px-8 py-3 border-2 border-lime-600 text-lime-700 font-semibold text-lg rounded-full relative overflow-hidden group transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:bg-lime-50">
-              <span className="absolute inset-0 bg-lime-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></span>
-              <span className="relative z-10 block transform group-hover:scale-100 group-hover:translate-x-0 transition-transform duration-300">Explore Our Pathways</span>
-              <span className="absolute inset-0 border-2 border-transparent group-hover:border-lime-700 transition-all duration-300 rounded-full"></span>
-            </button>
-          </div>
-        </div>
+      <div className="relative z-10 min-h-screen flex items-center">
+        <div className="container mx-auto px-6 py-12">
+          <div className="grid grid-cols-12 gap-8 items-center">
 
-        {/* Right Section: Extraordinary, Asymmetrical Image Composition */}
-        <div className="relative flex justify-center md:justify-end min-h-[500px] md:min-h-[600px] lg:min-h-[700px] group animate-fade-in-right pr-0 md:pr-12 lg:pr-24">
-          {/* Main Image 1 (Colorful Spheres) - "Photo inside case" effect */}
-          <div className="absolute w-full max-w-lg h-full z-40" style={{ top: '5%', left: '5%' }}>
-            <div className="absolute inset-0 bg-gradient-to-b from-lime-600 to-yellow-400 rounded-3xl shadow-xl p-4 flex items-center justify-center overflow-hidden transition-all duration-500 ease-out rotate-[-5deg] group-hover:shadow-2xl group-hover:scale-[1.02] group-hover:rotate-[-8deg]">
-              <img
-                src="https://images.unsplash.com/photo-1639584858073-0e2dc200689e?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Abstract colorful spheres representing interconnectedness and thought"
-                className="w-full h-full object-cover rounded-2xl transition-transform duration-700 ease-out transform rotate-[0deg] scale-[1.02] group-hover:scale-[1.08] group-hover:rotate-[0deg] group-hover:translate-y-[-5px]" // Image inside case moves
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1074x716/E0F2FE/6B7280?text=Image+1'; }}
-              />
+            {/* Left Content */}
+            <div className="col-span-12 lg:col-span-7 space-y-8 text-center lg:text-left">
+              {/* Main Heading */}
+              <div className="space-y-4">
+                <h1 className="text-5xl md:text-6xl font-extrabold leading-tight font-['Tilt_Neon']">
+                  <span className="block text-gray-900">Find Resources for</span>
+                  <span className="bg-gradient-to-r from-purple-600 via-rose-500 to-purple-700 bg-clip-text text-transparent"> {/* Darker gradient colors */}
+                    Mental Well-being
+                  </span>
+                  <span className="block text-gray-900">& Emotional Growth</span>
+                </h1>
+              </div>
+
+              {/* Description */}
+              <p className="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto lg:mx-0"> {/* Darker gray text for better contrast */}
+                Our platform is dedicated to helping you find resources to support every stage of your emotional journey, from professional development to personal growth. Discover curated content, expert guidance, and practical tools.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button className="bg-gradient-to-r from-purple-600 via-rose-500 to-purple-700 text-white px-8 py-4 rounded-full font-semibold shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 flex items-center gap-3 justify-center"> {/* Darker purple/pink gradient button */}
+                  Start Your Journey
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+
+                <button className="bg-white/90 backdrop-blur-sm text-purple-900 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 hover:shadow-xl border border-purple-400 flex items-center gap-3 justify-center"> {/* Darker purple text and border button */}
+                  <Play className="w-5 h-5" />
+                  Watch Demo
+                </button>
+              </div>
             </div>
-          </div>
 
-          {/* Main Image 2 (Laptop with abstract lines) - "Photo inside case" effect */}
-          <div className="absolute w-full max-w-lg h-full z-30" style={{ bottom: '5%', right: '5%' }}>
-            <div className="absolute inset-0 bg-gradient-to-b from-emerald-600 to-teal-400 rounded-3xl shadow-xl p-4 flex items-center justify-center overflow-hidden transition-all duration-500 ease-out rotate-[4deg] group-hover:shadow-2xl group-hover:scale-[1.02] group-hover:rotate-[8deg]">
-              <img
-                src="https://images.unsplash.com/photo-1529485726363-95c8d62f656f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Laptop with abstract lines representing connection and data"
-                className="w-full h-full object-cover rounded-2xl transition-transform duration-700 ease-out transform rotate-[0deg] scale-[1.02] group-hover:scale-[1.08] group-hover:rotate-[0deg] group-hover:translate-y-[5px]" // Image inside case moves
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1974x1316/E0F2FE/6B7280?text=Image+2'; }}
-              />
+            {/* Right Visual - Enhanced! */}
+            <div className="col-span-12 lg:col-span-5 flex justify-center items-center relative py-12 lg:py-0">
+              <div className="relative w-full max-w-lg mx-auto aspect-[3/4] rounded-4xl shadow-3xl transform rotate-3 hover:rotate-0 transition-transform duration-500 ease-out">
+                {/* Background "Polaroid" Effect */}
+                <div className="absolute inset-0 bg-white rounded-4xl p-4 shadow-inner">
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden">
+                    <img
+                      src={testimonials[currentSlide].image}
+                      alt={testimonials[currentSlide].name}
+                      className="w-full h-full object-cover transition-opacity duration-700 ease-in-out"
+                      key={currentSlide} // Key for re-render and transition on slide change
+                    />
+
+                    {/* Gradient Overlay for Testimonial */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end"> {/* Retained dark overlay for text readability */}
+                      <div className="p-6 text-white text-left space-y-2"> {/* Retained white text for readability */}
+                        <p className="text-lg font-medium italic leading-relaxed">
+                          "{testimonials[currentSlide].quote}"
+                        </p>
+                        <div className="flex items-center gap-3">
+                          <div>
+                            <p className="font-bold text-xl">{testimonials[currentSlide].name}</p>
+                            <p className="text-sm opacity-80">{testimonials[currentSlide].role}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Stats - repositioned and styled */}
+                <div className="absolute -top-12 -left-8 bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl border border-purple-300 transform -rotate-6 transition-transform duration-300 hover:rotate-0 hover:scale-105"> {/* Stronger purple border */}
+                  <div className="text-center">
+                    <div className="text-3xl font-extrabold text-purple-800 font-['Tilt_Neon']">10K+</div> {/* Darker purple text */}
+                    <div className="text-sm text-gray-700 font-medium">Happy Users</div>
+                  </div>
+                </div>
+
+                <div className="absolute -bottom-12 -right-8 bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-2xl border border-pink-300 transform rotate-6 transition-transform duration-300 hover:rotate-0 hover:scale-105"> {/* Stronger pink border */}
+                  <div className="text-center">
+                    <div className="text-3xl font-extrabold text-pink-800 font-['Tilt_Neon']">500+</div> {/* Darker pink text */}
+                    <div className="text-sm text-gray-700 font-medium">Curated Resources</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex justify-center space-x-2 mt-6">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentSlide
+                        ? 'bg-purple-800 w-8' /* Darker purple active indicator */
+                        : 'bg-purple-400 hover:bg-purple-500' /* Stronger purple inactive indicator */
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Tailwind CSS and Custom Keyframes */}
-      <style>
-        {`
-        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Tilt+Neon&display=swap');
-
-        .font-exo-2 {
-          font-family: 'Exo 2', sans-serif;
-        }
-        .font-tilt-neon {
-          font-family: 'Tilt Neon', cursive;
-        }
-
-        @keyframes fadeInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes fadeInRight {
-          from {
-            opacity: 0;
-            transform: translateX(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        .animate-fade-in-left {
-          animation: fadeInLeft 1s ease-out forwards;
-        }
-
-        .animate-fade-in-right {
-          animation: fadeInRight 1s ease-out forwards;
-        }
-
-        /* Swirl Animations for background SVG circles */
-        @keyframes swirl-1 {
-          0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-          25% { transform: translate(10vw, 5vh) scale(1.1); opacity: 0.9; }
-          50% { transform: translate(20vw, 0) scale(1.2); opacity: 0.8; }
-          75% { transform: translate(10vw, -5vh) scale(1.1); opacity: 0.9; }
-          100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-        }
-        @keyframes swirl-2 {
-          0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-          25% { transform: translate(-10vw, -5vh) scale(1.1); opacity: 0.7; }
-          50% { transform: translate(-20vw, 0) scale(1.2); opacity: 0.6; }
-          75% { transform: translate(-10vw, 5vh) scale(1.1); opacity: 0.7; }
-          100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-        }
-        @keyframes swirl-3 {
-          0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-          25% { transform: translate(5vw, -10vh) scale(1.1); opacity: 0.9; }
-          50% { transform: translate(0, -20vh) scale(1.2); opacity: 0.8; }
-          75% { transform: translate(-5vw, -10vh) scale(1.1); opacity: 0.9; }
-          100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-        }
-        @keyframes swirl-4 {
-          0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-          25% { transform: translate(5vw, 10vh) scale(1.1); opacity: 0.7; }
-          50% { transform: translate(0, 20vh) scale(1.2); opacity: 0.6; }
-          75% { transform: translate(-5vw, 10vh) scale(1.1); opacity: 0.7; }
-          100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-        }
-        @keyframes swirl-5 {
-          0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-          25% { transform: translate(-5vw, 10vh) scale(1.1); opacity: 0.9; }
-          50% { transform: translate(-10vw, 0) scale(1.2); opacity: 0.8; }
-          75% { transform: translate(-5vw, -10vh) scale(1.1); opacity: 0.9; }
-          100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-        }
-
-        /* Draw line animations for intersecting SVGs */
-        @keyframes draw-path-one {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-        @keyframes draw-path-two {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-
-        /* Blob animation for background shapes */
-        @keyframes blob {
-          0% {
-            transform: translate(0, 0) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-          100% {
-            transform: translate(0, 0) scale(1);
-          }
-        }
-        .animate-blob {
-          animation: blob 7s infinite ease-in-out alternate;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        /* New: Image glow pulse animation (kept for potential future use or alternative styles) */
-        @keyframes pulse-slow {
-          0%, 100% {
-            transform: scale(1);
-            opacity: 0.7;
-          }
-          50% {
-            transform: scale(1.05);
-            opacity: 0.9;
-          }
-        }
-        .animate-pulse-slow {
-          animation: pulse-slow 4s infinite ease-in-out alternate;
-        }
-        .animation-delay-1000 {
-          animation-delay: 1s;
-        }
-
-        /* New: Text gradient animation */
-        @keyframes text-gradient-anim {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        .animate-text-gradient .text-transparent {
-          background-size: 200% auto;
-          animation: text-gradient-anim 3s ease-in-out infinite alternate;
-        }
-
-        /* New: Fade in up animation for buttons */
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out forwards 0.5s; /* Added delay */
-        }
-        `}
-      </style>
-    </section>
+      {/* Bottom Wave */}
+      
+    </div>
   );
 };
 
