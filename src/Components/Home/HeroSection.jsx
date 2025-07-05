@@ -57,7 +57,7 @@ const HeroSection = () => {
       </div>
 
       {/* Main Content Grid */}
-      <div className="relative z-10 min-h-screen flex items-center">
+      <div className="relative z-10 min-h-screen flex items-center mt-6 lg:mt-0">
         <div className="container mx-auto px-6 py-12">
           <div className="grid grid-cols-12 gap-8 items-center">
 
