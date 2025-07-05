@@ -6,28 +6,28 @@ const Testimonials = () => {
     {
       name: "Dr. Sarah Johnson",
       role: "Licensed Psychologist",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b332c5fe?w=150&h=150&fit=crop&crop=face",
+      image: "/images/girl1.jpg",
       text: "The professional development resources have transformed my practice. The therapy techniques are evidence-based and incredibly effective.",
       rating: 5
     },
     {
       name: "Michael Chen",
       role: "Marketing Director",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      image: "/images/boy1.jpg",
       text: "As a busy professional, the quick stress-relief techniques have been a game-changer. I can now manage workplace pressure much better.",
       rating: 5
     },
     {
       name: "Emma Thompson",
       role: "Mother of Two",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+      image: "/images/girl2.jpg",
       text: "The parenting resources helped me develop emotional intelligence in my children. They're more resilient and emotionally aware now.",
       rating: 5
     },
     {
       name: "James Wilson",
       role: "Life Coach",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      image: "/images/boy2.jpg",
       text: "The self-analysis tools and emotion tracking journals have been invaluable for my personal growth and my clients' development.",
       rating: 5
     }

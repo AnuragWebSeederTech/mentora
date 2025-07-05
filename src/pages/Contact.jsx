@@ -99,7 +99,7 @@ const ContactSection = () => {
                     id="name"
                     name="name"
                     className="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-3 focus:ring-blue-400 focus:border-blue-400 outline-none transition-all duration-300 text-gray-800 placeholder-gray-500 text-base"
-                    placeholder="John Doe"
+                    placeholder="abc abc"
                     style={{ fontFamily: 'Exo 2, sans-serif' }}
                   />
                 </div>
@@ -110,7 +110,7 @@ const ContactSection = () => {
                     id="email"
                     name="email"
                     className="w-full px-5 py-3 border border-gray-300 rounded-xl focus:ring-3 focus:ring-purple-400 focus:border-purple-400 outline-none transition-all duration-300 text-gray-800 placeholder-gray-500 text-base"
-                    placeholder="john.doe@example.com"
+                    placeholder="abc@example.com"
                     style={{ fontFamily: 'Exo 2, sans-serif' }}
                   />
                 </div>

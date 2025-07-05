@@ -11,16 +11,13 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo and Brand Name */}
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-800 rounded-lg flex items-center justify-center">
-              <Brain className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+            <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
               Mentora
             </span>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8 text-lg">
             <Link to="/" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">Home</Link>
             <Link to="/about" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">About</Link>
             <Link to="/services" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Services</Link>
