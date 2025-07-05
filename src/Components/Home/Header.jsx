@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-purple-100 shadow-sm">
-      <div className="max-w-[73%] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[93%] lg:max-w-[73%] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Brand Name */}
           <div className="flex items-center space-x-2">
@@ -43,9 +43,9 @@ const Header = () => {
           <div className="md:hidden bg-white border-t border-purple-100 py-4 space-y-4 px-4">
             <Link to="/" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">Home</Link>
             <Link to="/about" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">About</Link>
-            <Link to="/how-it-works" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">How It Works</Link>
-            <Link to="/testimonials" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">Testimonials</Link>
-            <Link to="/faq" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">FAQ</Link>
+            <Link to="/services" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">Services</Link>
+            <Link to="/find-a-therapist" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">Find a Therapist</Link>
+            <Link to="/contact" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium py-2">Contact Us</Link>
             <button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-2 rounded-full font-medium">
               Get Started
             </button>
